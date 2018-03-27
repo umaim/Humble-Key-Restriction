@@ -4,8 +4,8 @@
 // @author       Cloud
 // @namespace    https://github.com/Cloud-Swift/Humble-Key-Restriction
 // @version      0.1
-// @updateURL    
-// @downloadURL  
+// @updateURL    https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.meta.js
+// @downloadURL  https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://ske.cloudswift.me/favicon.ico
 // @include      https://www.humblebundle.com/downloads*
 // @grant        GM_xmlhttpRequest
