@@ -4,7 +4,7 @@
 // @author       Cloud
 // @namespace    https://github.com/Cloud-Swift/Humble-Key-Restriction
 // @supportURL   https://github.com/Cloud-Swift/Humble-Key-Restriction/issues
-// @version      1.0.0
+// @version      1.1.0
 // @updateURL    https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.meta.js
 // @downloadURL  https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://ske.cloudswift.me/favicon.ico
@@ -292,9 +292,10 @@
                                 product.human_name = productsObject[i].human_name;
                                 product.exclusive_countries = productsObject[i].exclusive_countries;
                                 product.disallowed_countries = productsObject[i].disallowed_countries;
+                                product.machine_name = productsObject[i].machine_name;
                                 productsInfo.push(product);
                             }
-                            /*Format [{human_name: "XXX", exclusive_countries: Array(), disallowed_countries: Array()},{...},{...},...] */
+                            /*Format [{human_name: 'XXX', exclusive_countries: Array(), disallowed_countries: Array(), machine_name: 'XXX'},{...},{...},...] */
                             insertHTML();
                         }
                     }
@@ -305,19 +306,25 @@
 
     const insertHTML = () => {
         let nodes = document.getElementsByClassName('key-redeemer');
+        let offset = 0;
 
-        for (let i = 0; i < nodes.length && i < productsInfo.length; i++) {
-            if (productsInfo[i].exclusive_countries.length == 0 && productsInfo[i].disallowed_countries.length == 0) {
-                nodes[i].innerHTML += '<span style="color: #97B147">无激活限制</span>';
+        for (let i = 0; i < nodes.length && i + offset < productsInfo.length; i++) {
+            if (productsInfo[i + offset].human_name === nodes[i].children.item('heading-text').children[0].innerText) {
+                nodes[i].innerHTML += `<span>Machine Name: ${productsInfo[i + offset].machine_name}</span><br/>`;
+                if (productsInfo[i + offset].exclusive_countries.length === 0 && productsInfo[i + offset].disallowed_countries.length === 0) {
+                    nodes[i].innerHTML += '<span style="color: #97B147">无激活限制</span>';
+                } else {
+                    let restrictionInfo = '';
+                    if (productsInfo[i + offset].exclusive_countries.length > 0) {
+                        restrictionInfo += `只能在以下地区激活：${translate(productsInfo[i].exclusive_countries)}<br/>`;
+                    }
+                    if (productsInfo[i + offset].disallowed_countries.length > 0) {
+                        restrictionInfo += `不能在以下地区激活：${translate(productsInfo[i].disallowed_countries)}`;
+                    }
+                    nodes[i].innerHTML += `<span style='color:red; word-wrap:break-word; overflow:hidden;'>${restrictionInfo}</span>`;
+                }
             } else {
-                let restrictionInfo = '';
-                if (productsInfo[i].exclusive_countries.length > 0) {
-                    restrictionInfo += `只能在以下地区激活：${translate(productsInfo[i].exclusive_countries)}<br/>`;
-                }
-                if (productsInfo[i].disallowed_countries.length > 0) {
-                    restrictionInfo += `不能在以下地区激活：${translate(productsInfo[i].disallowed_countries)}`;
-                }
-                nodes[i].innerHTML += `<span style='color:red; word-wrap:break-word; overflow:hidden;'>${restrictionInfo}</span>`;
+                offset++;
             }
         }
     };
