@@ -4,7 +4,7 @@
 // @author       Cloud
 // @namespace    https://github.com/Cloud-Swift/Humble-Key-Restriction
 // @supportURL   https://github.com/Cloud-Swift/Humble-Key-Restriction/issues
-// @version      1.1.2
+// @version      1.1.3
 // @updateURL    https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.meta.js
 // @downloadURL  https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://ske.cloudswift.me/favicon.ico
@@ -309,7 +309,7 @@
         let offset = 0;
 
         for (let i = 0; i < nodes.length && i + offset < productsInfo.length; i++) {
-            if (productsInfo[i + offset].human_name === nodes[i].children.item('heading-text').getAttribute('title')) {
+            if (productsInfo[i + offset].human_name === nodes[i].children.item('heading-text').children.item('h4').innerText.trim()) {
                 nodes[i].innerHTML += `<span>Machine Name: ${productsInfo[i + offset].machine_name}</span><br/>`;
                 if (productsInfo[i + offset].exclusive_countries.length === 0 && productsInfo[i + offset].disallowed_countries.length === 0) {
                     nodes[i].innerHTML += '<span style="color: #97B147">无激活限制</span>';
