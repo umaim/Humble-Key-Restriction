@@ -4,10 +4,10 @@
 // @author       Cloud
 // @namespace    https://github.com/Cloud-Swift/Humble-Key-Restriction
 // @supportURL   https://github.com/Cloud-Swift/Humble-Key-Restriction/issues
-// @version      1.2.0
+// @version      1.3.0
 // @updateURL    https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.meta.js
 // @downloadURL  https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.user.js
-// @icon         https://ske.cloudswift.me/favicon.ico
+// @icon         https://humblebundle-a.akamaihd.net/static/hashed/46cf2ed85a0641bfdc052121786440c70da77d75.png
 // @include      https://www.humblebundle.com/downloads*
 // @grant        GM_xmlhttpRequest
 // @run-at       document-end
@@ -275,6 +275,7 @@
                 ZW: '津巴布韦',
             };
 
+            /*Format: { Game Title : {exclusive_countries: Array(), disallowed_countries: Array(), machine_name: 'XXX'}, Game Title : {...}, ...} */
             let productsInfo = [];
 
             const getProductsInfo = () => {
@@ -290,14 +291,11 @@
                                 if (res.responseText != '') {
                                     let productsObject = JSON.parse(res.responseText).tpkd_dict.all_tpks;
                                     for (let i = 0; i < productsObject.length; i++) {
-                                        let product = {};
-                                        product.human_name = productsObject[i].human_name;
-                                        product.exclusive_countries = productsObject[i].exclusive_countries;
-                                        product.disallowed_countries = productsObject[i].disallowed_countries;
-                                        product.machine_name = productsObject[i].machine_name;
-                                        productsInfo.push(product);
+                                        productsInfo[productsObject[i].human_name] = {};
+                                        productsInfo[productsObject[i].human_name].exclusive_countries = productsObject[i].exclusive_countries;
+                                        productsInfo[productsObject[i].human_name].disallowed_countries = productsObject[i].disallowed_countries;
+                                        productsInfo[productsObject[i].human_name].machine_name = productsObject[i].machine_name;
                                     }
-                                    /*Format [{human_name: 'XXX', exclusive_countries: Array(), disallowed_countries: Array(), machine_name: 'XXX'},{...},{...},...] */
                                     insertHTML();
                                 }
                             }
@@ -308,26 +306,40 @@
 
             const insertHTML = () => {
                 let nodes = document.getElementsByClassName('key-redeemer');
-                let offset = 0;
+                for (let i = 0; i < nodes.length; i++) {
+                    let node = nodes.item(i);
+                    let headingNode = node.getElementsByClassName('heading-text');
+                    if (headingNode.length == 1) {
+                        let headingText = headingNode.item(0).firstElementChild.innerText;
+                        if (productsInfo[headingText]) {
+                            // Add Machine Name
+                            let machineNameElem = document.createElement('span');
+                            machineNameElem.innerText = `Machine Name: ${productsInfo[headingText].machine_name}`;
+                            node.append(machineNameElem);
+                            node.append(document.createElement('br'));
 
-                for (let i = 0; i < nodes.length && i + offset < productsInfo.length; i++) {
-                    if (nodes[i].innerText.indexOf(productsInfo[i + offset].human_name) > -1) {
-                        nodes[i].innerHTML += `<span>Machine Name: ${productsInfo[i + offset].machine_name}</span><br/>`;
-                        if (productsInfo[i + offset].exclusive_countries.length === 0 && productsInfo[i + offset].disallowed_countries.length === 0) {
-                            nodes[i].innerHTML += '<span style="color: #97B147">无激活限制</span>';
-                        } else {
-                            let restrictionInfo = '';
-                            if (productsInfo[i + offset].exclusive_countries.length > 0) {
-                                restrictionInfo += `只能在以下地区激活：${translate(productsInfo[i + offset].exclusive_countries)}<br/>`;
+                            // Add restriction information
+                            if (productsInfo[headingText].exclusive_countries.length === 0 && productsInfo[headingText].disallowed_countries.length === 0) {
+                                let noRestrictionElem = document.createElement('span');
+                                noRestrictionElem.setAttribute('style', 'color: #97B147');
+                                noRestrictionElem.innerText = '无激活限制';
+                                node.append(noRestrictionElem);
+                            } else {
+                                if (productsInfo[headingText].exclusive_countries.length > 0) {
+                                    let exclusiveCountryElem = document.createElement('span');
+                                    exclusiveCountryElem.setAttribute('style', 'color:red; word-wrap:break-word; overflow:hidden;');
+                                    exclusiveCountryElem.innerText = `只能在以下地区激活：${translate(productsInfo[headingText].exclusive_countries)}`;
+                                    node.append(exclusiveCountryElem);
+                                    node.append(document.createElement('br'));
+                                }
+                                if (productsInfo[headingText].disallowed_countries.length > 0) {
+                                    let disallowedCountryElem = document.createElement('span');
+                                    disallowedCountryElem.setAttribute('style', 'color:red; word-wrap:break-word; overflow:hidden;');
+                                    disallowedCountryElem.innerText = `不能在以下地区激活：${translate(productsInfo[headingText].disallowed_countries)}`;
+                                    node.append(disallowedCountryElem);
+                                }
                             }
-                            if (productsInfo[i + offset].disallowed_countries.length > 0) {
-                                restrictionInfo += `不能在以下地区激活：${translate(productsInfo[i + offset].disallowed_countries)}`;
-                            }
-                            nodes[i].innerHTML += `<span style='color:red; word-wrap:break-word; overflow:hidden;'>${restrictionInfo}</span>`;
                         }
-                    } else {
-                        offset++;
-                        i--;
                     }
                 }
             };
@@ -337,7 +349,6 @@
             };
 
             getProductsInfo();
-            //window.onload = getProductsInfo;
         });
     });
 })();
