@@ -310,7 +310,7 @@
                     let node = nodes.item(i);
                     let headingNode = node.getElementsByClassName('heading-text');
                     if (headingNode.length == 1) {
-                        let headingText = headingNode.item(0).firstElementChild.innerText;
+                        let headingText = headingNode.item(0).firstElementChild.innerText.trim();
                         if (productsInfo[headingText]) {
                             // Add Machine Name
                             let machineNameElem = document.createElement('span');
