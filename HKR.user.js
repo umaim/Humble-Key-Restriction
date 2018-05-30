@@ -4,7 +4,7 @@
 // @author       Cloud
 // @namespace    https://github.com/Cloud-Swift/Humble-Key-Restriction
 // @supportURL   https://github.com/Cloud-Swift/Humble-Key-Restriction/issues
-// @version      1.3.0
+// @version      1.3.1
 // @updateURL    https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.meta.js
 // @downloadURL  https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://humblebundle-a.akamaihd.net/static/hashed/46cf2ed85a0641bfdc052121786440c70da77d75.png
