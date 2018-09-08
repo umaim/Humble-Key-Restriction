@@ -2,11 +2,11 @@
 // @name         Humble Key Restriction
 // @description  Display Humble Bundle region restriction infomation on Humble's download page
 // @author       Cloud
-// @namespace    https://github.com/Cloud-Swift/Humble-Key-Restriction
-// @supportURL   https://github.com/Cloud-Swift/Humble-Key-Restriction/issues
-// @version      1.3.1
-// @updateURL    https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.meta.js
-// @downloadURL  https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.user.js
+// @namespace    https://github.com/thePixv/Humble-Key-Restriction
+// @supportURL   https://github.com/thePixv/Humble-Key-Restriction/issues
+// @version      1.3.2
+// @updateURL    https://github.com/thePixv/Humble-Key-Restriction/raw/master/HKR.meta.js
+// @downloadURL  https://github.com/thePixv/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://humblebundle-a.akamaihd.net/static/hashed/46cf2ed85a0641bfdc052121786440c70da77d75.png
 // @include      https://www.humblebundle.com/downloads*
 // @grant        GM_xmlhttpRequest
@@ -55,6 +55,7 @@
                 BR: '巴西',
                 BS: '巴哈马',
                 BT: '不丹',
+                BU: '缅甸',
                 BV: '布韦岛',
                 BW: '博兹瓦纳',
                 BY: '白俄罗斯',
