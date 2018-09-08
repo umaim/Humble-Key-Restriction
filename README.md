@@ -9,8 +9,26 @@
 ## 安装
 
 1. 安装 [Tampermonkey](https://tampermonkey.net/)（推荐）、[Greasemonkey](http://www.greasespot.net/) 或者其它用户脚本管理工具
-1. [点击这里](https://github.com/Cloud-Swift/Humble-Key-Restriction/raw/master/HKR.user.js) 安装脚本
+1. [点击这里](https://github.com/thePixv/Humble-Key-Restriction/raw/master/HKR.user.js) 安装脚本
 1. 就可以用啦 XD
+
+## 使用效果
+
+### 无锁区限制
+
+![No Restriction](./resources/NoRestriction.png)
+
+### 未揭开
+
+![Unclaimed](./resources/Unclaimed.png)
+
+### 已揭开
+
+![Claimed](./resources/Claimed.png)
+
+### 非 Steam Key
+
+![Blizzard](./resources/Blizzard.png)
 
 ## 问题反馈和建议
 
