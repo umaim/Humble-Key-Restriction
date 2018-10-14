@@ -9,7 +9,7 @@
 ## 安装
 
 1. 安装 [Tampermonkey](https://tampermonkey.net/)（推荐）、[Greasemonkey](http://www.greasespot.net/) 或者其它用户脚本管理工具
-1. [点击这里](https://github.com/thePixv/Humble-Key-Restriction/raw/master/HKR.user.js) 安装脚本
+1. [点击这里](https://github.com/PixvIO/Humble-Key-Restriction/raw/master/HKR.user.js) 安装脚本
 1. 就可以用啦 XD
 
 ## 使用效果
