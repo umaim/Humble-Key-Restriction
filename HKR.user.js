@@ -2,11 +2,11 @@
 // @name         Humble Key Restriction
 // @description  Display Humble Bundle region restriction infomation on Humble's download page
 // @author       Cloud
-// @namespace    https://github.com/xPixv/Humble-Key-Restriction
-// @supportURL   https://github.com/xPixv/Humble-Key-Restriction/issues
-// @version      1.3.3
-// @updateURL    https://github.com/xPixv/Humble-Key-Restriction/raw/master/HKR.meta.js
-// @downloadURL  https://github.com/xPixv/Humble-Key-Restriction/raw/master/HKR.user.js
+// @namespace    https://github.com/PixvIO/Humble-Key-Restriction
+// @supportURL   https://github.com/PixvIO/Humble-Key-Restriction/issues
+// @version      1.3.4
+// @updateURL    https://github.com/PixvIO/Humble-Key-Restriction/raw/master/HKR.meta.js
+// @downloadURL  https://github.com/PixvIO/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://humblebundle-a.akamaihd.net/static/hashed/46cf2ed85a0641bfdc052121786440c70da77d75.png
 // @include      https://www.humblebundle.com/downloads*
 // @grant        GM_xmlhttpRequest
