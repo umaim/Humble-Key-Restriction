@@ -310,7 +310,7 @@
         if (nodes.length === 0) {
             setTimeout(() => {
                 insertHTML();
-            }, 1000);
+            }, 500);
             return;
         }
         for (let i = 0; i < nodes.length; i++) {
