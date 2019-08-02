@@ -4,7 +4,7 @@
 // @author       Cloud
 // @namespace    https://github.com/xPixv/Humble-Key-Restriction
 // @supportURL   https://github.com/xPixv/Humble-Key-Restriction/issues
-// @version      1.4.0
+// @version      1.4.1
 // @updateURL    https://github.com/xPixv/Humble-Key-Restriction/raw/master/HKR.meta.js
 // @downloadURL  https://github.com/xPixv/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://humblebundle-a.akamaihd.net/static/hashed/46cf2ed85a0641bfdc052121786440c70da77d75.png
@@ -301,7 +301,6 @@
                   productsInfo[humanName].steam_app_id = product.steam_app_id;
                 }
               }
-              console.log('Humble Key Restriction User Script::', `Products Info Object: ${productsInfo}`);
               setTimeout(() => {
                 insertHTML();
               }, 1000);
