@@ -30,6 +30,10 @@
 
 ![Blizzard](./resources/Blizzard.png)
 
+### 更新日志
+
+https://github.com/xPixv/Humble-Key-Restriction/blob/master/CHANGELOG.md
+
 ## 问题反馈和建议
 
 可以在 [issue](https://github.com/xPixv/Humble-Key-Restriction/issues) 页面提出 issue

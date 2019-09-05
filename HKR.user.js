@@ -4,7 +4,7 @@
 // @author       Cloud
 // @namespace    https://github.com/xPixv/Humble-Key-Restriction
 // @supportURL   https://github.com/xPixv/Humble-Key-Restriction/issues
-// @version      1.4.1
+// @version      1.4.2
 // @updateURL    https://github.com/xPixv/Humble-Key-Restriction/raw/master/HKR.meta.js
 // @downloadURL  https://github.com/xPixv/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://humblebundle-a.akamaihd.net/static/hashed/46cf2ed85a0641bfdc052121786440c70da77d75.png
