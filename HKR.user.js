@@ -333,6 +333,7 @@
           if (productInfo.steam_app_id) {
             const steamAppElem = document.createElement('a');
             steamAppElem.href = `https://store.steampowered.com/app/${productInfo.steam_app_id}`;
+            steamAppElem.setAttribute('lang', 'zh-CN');
             steamAppElem.textContent = `Steam 商店链接：https://store.steampowered.com/app/${productInfo.steam_app_id}`;
             steamAppElem.target = '_blank';
             node.append(steamAppElem);
@@ -349,12 +350,14 @@
           if (productInfo.exclusive_countries.length === 0 && productInfo.disallowed_countries.length === 0) {
             const noRestrictionElem = document.createElement('span');
             noRestrictionElem.setAttribute('style', 'color: #97B147; font-weight: bold;');
+            noRestrictionElem.setAttribute('lang', 'zh-CN');
             noRestrictionElem.innerText = '无激活限制';
             node.append(noRestrictionElem);
           } else {
             if (productInfo.exclusive_countries.length > 0) {
               const exclusiveCountryElem = document.createElement('span');
               exclusiveCountryElem.setAttribute('style', 'color:red; font-weight: bold; word-wrap:break-word; overflow:hidden;');
+              exclusiveCountryElem.setAttribute('lang', 'zh-CN');
               exclusiveCountryElem.innerText = `只能在以下地区激活：${translate(productInfo.exclusive_countries)}`;
               node.append(exclusiveCountryElem);
               node.append(document.createElement('br'));
@@ -362,6 +365,7 @@
             if (productInfo.disallowed_countries.length > 0) {
               const disallowedCountryElem = document.createElement('span');
               disallowedCountryElem.setAttribute('style', 'color:red; font-weight: bold; word-wrap:break-word; overflow:hidden;');
+              disallowedCountryElem.setAttribute('lang', 'zh-CN');
               disallowedCountryElem.innerText = `不能在以下地区激活：${translate(productInfo.disallowed_countries)}`;
               node.append(disallowedCountryElem);
             }
