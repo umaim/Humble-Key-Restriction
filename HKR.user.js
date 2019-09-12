@@ -4,7 +4,7 @@
 // @author       Cloud
 // @namespace    https://github.com/xPixv/Humble-Key-Restriction
 // @supportURL   https://github.com/xPixv/Humble-Key-Restriction/issues
-// @version      1.4.2
+// @version      1.4.3
 // @updateURL    https://github.com/xPixv/Humble-Key-Restriction/raw/master/HKR.meta.js
 // @downloadURL  https://github.com/xPixv/Humble-Key-Restriction/raw/master/HKR.user.js
 // @icon         https://humblebundle-a.akamaihd.net/static/hashed/46cf2ed85a0641bfdc052121786440c70da77d75.png
@@ -274,8 +274,19 @@
     ZW: '津巴布韦',
   };
 
-  /*Format: { Game Title : {exclusive_countries: Array(), disallowed_countries: Array(), machine_name: 'XXX'}, Game Title : {...}, ...} */
-  let productsInfo = [];
+  /*Format: 
+  { 
+    Game Title : {
+    exclusive_countries: Array<string>,
+    disallowed_countries: Array<string>,
+    machine_name: string,
+    team_app_id:? number
+    },
+    Game Title : {...},
+    ...
+  }
+  */
+  const productsInfo = [];
 
   const getProductsInfo = () => {
     const splitedURL = location.href.split(/downloads\?key=([A-Za-z0-9]+)/);
@@ -329,6 +340,9 @@
         let headingText = headingNode.item(0).firstElementChild.innerText.trim();
         const productInfo = productsInfo[headingText];
         if (productInfo) {
+          const insertElem = document.createElement('div');
+          insertElem.className = 'humble-key-restriction';
+
           // Add Steam Store Link
           if (productInfo.steam_app_id) {
             const steamAppElem = document.createElement('a');
@@ -336,15 +350,16 @@
             steamAppElem.setAttribute('lang', 'zh-CN');
             steamAppElem.textContent = `Steam 商店链接：https://store.steampowered.com/app/${productInfo.steam_app_id}`;
             steamAppElem.target = '_blank';
-            node.append(steamAppElem);
-            node.append(document.createElement('br'));
+            steamAppElem.rel = 'noopener';
+            insertElem.append(steamAppElem);
+            insertElem.append(document.createElement('br'));
           }
 
           // Add Machine Name
           const machineNameElem = document.createElement('span');
           machineNameElem.innerText = `Machine Name: ${productInfo.machine_name}`;
-          node.append(machineNameElem);
-          node.append(document.createElement('br'));
+          insertElem.append(machineNameElem);
+          insertElem.append(document.createElement('br'));
 
           // Add restriction information
           if (productInfo.exclusive_countries.length === 0 && productInfo.disallowed_countries.length === 0) {
@@ -352,31 +367,32 @@
             noRestrictionElem.setAttribute('style', 'color: #97B147; font-weight: bold;');
             noRestrictionElem.setAttribute('lang', 'zh-CN');
             noRestrictionElem.innerText = '无激活限制';
-            node.append(noRestrictionElem);
+            insertElem.append(noRestrictionElem);
           } else {
             if (productInfo.exclusive_countries.length > 0) {
               const exclusiveCountryElem = document.createElement('span');
               exclusiveCountryElem.setAttribute('style', 'color:red; font-weight: bold; word-wrap:break-word; overflow:hidden;');
               exclusiveCountryElem.setAttribute('lang', 'zh-CN');
               exclusiveCountryElem.innerText = `只能在以下地区激活：${translate(productInfo.exclusive_countries)}`;
-              node.append(exclusiveCountryElem);
-              node.append(document.createElement('br'));
+              insertElem.append(exclusiveCountryElem);
+              insertElem.append(document.createElement('br'));
             }
             if (productInfo.disallowed_countries.length > 0) {
               const disallowedCountryElem = document.createElement('span');
               disallowedCountryElem.setAttribute('style', 'color:red; font-weight: bold; word-wrap:break-word; overflow:hidden;');
               disallowedCountryElem.setAttribute('lang', 'zh-CN');
               disallowedCountryElem.innerText = `不能在以下地区激活：${translate(productInfo.disallowed_countries)}`;
-              node.append(disallowedCountryElem);
+              insertElem.append(disallowedCountryElem);
             }
           }
+          node.querySelector('.container').after(insertElem);
         }
       }
     }
   };
 
   const translate = arr => {
-    return arr.map(attr => localization[attr]).reduce((a, b) => `${a}，${b}`);
+    return arr.map(attr => localization[attr]).reduce((a, b) => `${a}、${b}`);
   };
 
   getProductsInfo();
