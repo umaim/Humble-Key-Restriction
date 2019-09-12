@@ -1,6 +1,10 @@
+## 1.4.3
+- 插入内容到 CDKey 下第一个元素，防止中间元(guang)素(gao)过多内容分散
+- 优化插入策略，提高性能（虽然并不存在性能问题 _(:з
+
 ## 1.4.2
 
-- 插入元素添加 lang 属性，防止字体回落到宋体，#6
+- 插入元素添加 lang 属性，防止字体回落到宋体，[#6](https://github.com/xPixv/Humble-Key-Restriction/pull/6)
 
 ## 1.4.1
 
@@ -13,7 +17,7 @@
 
 ## 1.3.1
 
-- 解决与其它脚本的冲突，#4
+- 解决与其它脚本的冲突，[#4](https://github.com/xPixv/Humble-Key-Restriction/pull/4)
 
 ## 1.2.0
 
